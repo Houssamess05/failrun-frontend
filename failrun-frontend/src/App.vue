@@ -6,6 +6,7 @@ import EsloganPrincipal from './components/EsloganPrincipal.vue'
 import CarruselFails from './components/CarruselFails.vue'
 import LlistaTopFive from './components/LlistaTopFive.vue'
 import PeuPagina from './components/PeuPagina.vue'
+import Sessio from './components/Sessio.vue'
 </script>
 
 <template>
