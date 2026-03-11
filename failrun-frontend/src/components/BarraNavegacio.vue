@@ -3,9 +3,9 @@
 
 <template>
   <nav class="barra-navegacio">
-    <a class="nav-link" href="#">
+    <router-link to="/login">
       <img id="Login" src="/styles/img/Profile.svg" alt="Login img">
-    </a>
+    </router-link>
 
     <a class="nav-link" href="#">
       <img id="Logo" src="/styles/img/Logo PLACEHOLDER.png" alt="Logo">
