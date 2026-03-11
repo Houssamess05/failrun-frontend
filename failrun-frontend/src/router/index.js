@@ -27,6 +27,10 @@ const router = createRouter({
     path: '/ajuda',
     name: 'ajuda',
     component: () => import('../views/HelpView.vue')
+    },{
+    path: '/jocs',
+    name: 'jocs',
+    component: () => import('../views/LlistaJocsView.vue')
     }
   ]
 })

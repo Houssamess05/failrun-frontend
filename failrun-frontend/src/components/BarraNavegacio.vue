@@ -11,10 +11,10 @@
       <img id="Logo" src="/styles/img/Logo PLACEHOLDER.png" alt="Logo">
     </a>
 
-    <a class="nav-button" href="#">Juegos</a>
-    <a class="nav-button" href="#">Retos</a>
-    <a class="nav-button" href="/ajuda">Ayuda</a>
-    <a class="nav-button" href="/sobre-nosaltres">Sobre Nosotros</a>
+    <router-link to="/jocs" class="nav-button">Juegos</router-link>
+    <router-link to="/retos" class="nav-button">Retos</router-link>
+    <router-link to="/ajuda" class="nav-button">Ayuda</router-link>
+    <router-link to="/sobre-nosaltres" class="nav-button">Sobre Nosotros</router-link>
   </nav>
 </template>
 

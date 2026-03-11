@@ -24,6 +24,7 @@
     border-radius: 20px;
     margin-top: 3rem;
     box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.5);
+    padding: 1rem 0 2rem 0;
 }
 
 .main-slogan-upper {
@@ -55,7 +56,8 @@
     color: white;
     font-size: 9.688rem;
     font-weight: 800;
-    margin-top: -4rem;
+    margin-top: -2rem;
+    margin-bottom: 1rem;
     text-decoration: underline;
 }
 </style>
