@@ -18,6 +18,15 @@ const router = createRouter({
       path: '/perfil',
       name: 'perfil',
       component: () => import('../views/UserView.vue')
+    },
+    {
+      path: '/sobre-nosaltres',
+      name: 'sobre-nosaltres',
+      component: () => import('../views/AboutView.vue')
+    },{
+    path: '/ajuda',
+    name: 'ajuda',
+    component: () => import('../views/HelpView.vue')
     }
   ]
 })

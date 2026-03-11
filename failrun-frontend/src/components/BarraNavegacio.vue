@@ -13,8 +13,8 @@
 
     <a class="nav-button" href="#">Juegos</a>
     <a class="nav-button" href="#">Retos</a>
-    <a class="nav-button" href="#">Ayuda</a>
-    <a class="nav-button" href="#">Sobre Nosotros</a>
+    <a class="nav-button" href="/ajuda">Ayuda</a>
+    <a class="nav-button" href="/sobre-nosaltres">Sobre Nosotros</a>
   </nav>
 </template>
 
