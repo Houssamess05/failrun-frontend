@@ -2,65 +2,64 @@
 </script>
 
 <template>
-  <nav class="barra-navegacio">
+<nav class="menu">
+  <div class="item">
     <router-link to="/login">
-      <img id="Login" src="/styles/img/Profile.svg" alt="Login img">
+      <img src="/styles/img/Profile.svg" alt="Login">
     </router-link>
+  </div>
 
-    <a class="nav-link" href="#">
-      <img id="Logo" src="/styles/img/Logo PLACEHOLDER.png" alt="Logo">
-    </a>
+  <div class="item">
+    <router-link to="/">
+      <img src="/styles/img/Logo PLACEHOLDER.png" alt="Logo">
+    </router-link>
+  </div>
 
-    <router-link to="/jocs" class="nav-button">Juegos</router-link>
-    <router-link to="/retos" class="nav-button">Retos</router-link>
-    <router-link to="/ajuda" class="nav-button">Ayuda</router-link>
-    <router-link to="/sobre-nosaltres" class="nav-button">Sobre Nosotros</router-link>
-  </nav>
+  <div class="item"><router-link to="/jocs">Juegos</router-link></div>
+  <div class="item"><router-link to="/retos">Retos</router-link></div>
+  <div class="item"><router-link to="/ajuda">Ayuda</router-link></div>
+  <div class="item"><router-link to="/sobre-nosaltres">Sobre Nosotros</router-link></div>
+</nav>
 </template>
 
 <style scoped>
-.barra-navegacio {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
-    max-height: 60px;
-    background-color: #FF2D55;
+.menu {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  background-color: #FF2D55;
+  height: 85px;
+  padding: 0 10px;
 }
 
-#Login {
-    width: 65px;
-    height: auto;
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;              /* el div ocupa toda la altura */
+  cursor: pointer;           /* cursor de botón */
+  transition: background 0.3s;
 }
 
-#Logo {
-    width: 85px;
-    height: auto;
+.item:hover {
+  background-color: #CF2949; /* rojo más oscuro al pasar */
 }
 
-.nav-link,
-.nav-button {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 58px;
-    text-decoration: none;
-    color: white;
-    font-weight: bolder;
+.item a {
+  color: white;
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;             /* el link también ocupa todo */
+  justify-content: center;
+  align-items: center;
 }
 
-.nav-button {
-    border: none;
-    background-color: #FF2D55;
-    cursor: pointer;
-    transition: all 0.5s;
-    font-weight: 800;
-    font-size: 1.5rem;
-}
-
-.nav-button:hover {
-    background-color: #CF2949;
+/* Tamaño de imágenes */
+.item img {
+  height: 60px;
+  object-fit: contain;
 }
 </style>

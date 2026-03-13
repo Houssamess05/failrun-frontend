@@ -3,6 +3,23 @@ import { ref } from 'vue'
 
 const mostrarRegistre = ref(false)
 const emit = defineEmits(['login', 'register'])
+
+// Login
+const usuari = ref('')
+const contrasenya = ref('')
+
+// Registre
+const correu = ref('')
+const nomUsuari = ref('')
+const contrasenyaRegistre = ref('')
+
+function gestionarLogin() {
+  emit('login', { usuari: usuari.value, contrasenya: contrasenya.value })
+}
+
+function gestionarRegistre() {
+  emit('register', { correu: correu.value, nomUsuari: nomUsuari.value, contrasenya: contrasenyaRegistre.value })
+}
 </script>
 
 <template>
@@ -12,9 +29,9 @@ const emit = defineEmits(['login', 'register'])
       <div v-if="!mostrarRegistre">
         <h1>Iniciar Sessió</h1>
         <div class="login-form">
-          <input type="text" placeholder="Usuari" />
-          <input type="password" placeholder="Contrasenya" />
-          <button @click="emit('login')">Entrar</button>
+          <input v-model="usuari" type="text" placeholder="Usuari" />
+          <input v-model="contrasenya" type="password" placeholder="Contrasenya" />
+          <button @click="gestionarLogin">Entrar</button>
         </div>
         <div class="register-link">
           <p>Encara no tens compte? 
@@ -26,15 +43,15 @@ const emit = defineEmits(['login', 'register'])
       <div v-else>
         <h1>Registre</h1>
         <div class="login-form">
-            <input type="email" placeholder="Correu" />
-            <input type="text" placeholder="Nom d'usuari" />
-            <input type="password" placeholder="Contrasenya" />
-            <button @click="emit('register')">Registrar-se</button>
+          <input v-model="correu" type="email" placeholder="Correu" />
+          <input v-model="nomUsuari" type="text" placeholder="Nom d'usuari" />
+          <input v-model="contrasenyaRegistre" type="password" placeholder="Contrasenya" />
+          <button @click="gestionarRegistre">Registrar-se</button>
         </div>
         <div class="register-link">
-            <p>Ja tens compte? 
+          <p>Ja tens compte? 
             <a href="#" @click.prevent="mostrarRegistre = false">Inicia sessió</a>
-            </p>
+          </p>
         </div>
       </div>
 
