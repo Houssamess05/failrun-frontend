@@ -2,20 +2,15 @@
 import FormulariSessio from '@/components/FormulariSessio.vue'
 import BarraNavegacio from '@/components/BarraNavegacio.vue'
 import PeuPagina from '@/components/PeuPagina.vue'
-import { useRouter } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
 
-const router = useRouter()
-const { login } = useAuth()
+const { login, register } = useAuth()
 
-function ferLogin(dades) {
-  login(dades)
-  router.push({ name: 'home' })
+async function ferLogin(dades) {
+  await login(dades.email, dades.password, dades.recordarme)
 }
-
-function ferRegistre(dades) {
-  login(dades)
-  router.push({ name: 'perfil' })
+async function ferRegistre(dades) {
+  await register(dades.username, dades.email, dades.password)
 }
 </script>
 

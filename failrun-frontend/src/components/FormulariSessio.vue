@@ -3,22 +3,34 @@ import { ref } from 'vue'
 
 const mostrarRegistre = ref(false)
 const emit = defineEmits(['login', 'register'])
+const error = ref('')
 
 // Login
-const usuari = ref('')
+const email = ref('')
 const contrasenya = ref('')
+const recordarme = ref(false)
 
 // Registre
-const correu = ref('')
+const correuRegistre = ref('')
 const nomUsuari = ref('')
 const contrasenyaRegistre = ref('')
 
-function gestionarLogin() {
-  emit('login', { usuari: usuari.value, contrasenya: contrasenya.value })
+async function gestionarLogin() {
+  error.value = ''
+  try {
+    emit('login', { email: email.value, password: contrasenya.value, recordarme: recordarme.value })
+  } catch (e) {
+    error.value = 'Credencials incorrectes'
+  }
 }
 
-function gestionarRegistre() {
-  emit('register', { correu: correu.value, nomUsuari: nomUsuari.value, contrasenya: contrasenyaRegistre.value })
+async function gestionarRegistre() {
+  error.value = ''
+  try {
+    emit('register', { username: nomUsuari.value, email: correuRegistre.value, password: contrasenyaRegistre.value })
+  } catch (e) {
+    error.value = 'Error en el registre'
+  }
 }
 </script>
 
@@ -29,12 +41,20 @@ function gestionarRegistre() {
       <div v-if="!mostrarRegistre">
         <h1>Iniciar Sessió</h1>
         <div class="login-form">
-          <input v-model="usuari" type="text" placeholder="Usuari" />
+          <input v-model="email" type="email" placeholder="Correu" />
           <input v-model="contrasenya" type="password" placeholder="Contrasenya" />
+
+          <!-- Checkbox recordarme -->
+          <label>
+            <input type="checkbox" v-model="recordarme" />
+            Recorda'm
+          </label>
+
+          <p v-if="error" class="error">{{ error }}</p>
           <button @click="gestionarLogin">Entrar</button>
         </div>
         <div class="register-link">
-          <p>Encara no tens compte? 
+          <p>Encara no tens compte?
             <a href="#" @click.prevent="mostrarRegistre = true">Registra't aquí</a>
           </p>
         </div>
@@ -43,13 +63,14 @@ function gestionarRegistre() {
       <div v-else>
         <h1>Registre</h1>
         <div class="login-form">
-          <input v-model="correu" type="email" placeholder="Correu" />
+          <input v-model="correuRegistre" type="email" placeholder="Correu" />
           <input v-model="nomUsuari" type="text" placeholder="Nom d'usuari" />
           <input v-model="contrasenyaRegistre" type="password" placeholder="Contrasenya" />
+          <p v-if="error" class="error">{{ error }}</p>
           <button @click="gestionarRegistre">Registrar-se</button>
         </div>
         <div class="register-link">
-          <p>Ja tens compte? 
+          <p>Ja tens compte?
             <a href="#" @click.prevent="mostrarRegistre = false">Inicia sessió</a>
           </p>
         </div>

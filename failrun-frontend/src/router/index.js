@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import { useAuth } from '@/composables/useAuth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,18 +36,17 @@ const router = createRouter({
       component: () => import('../views/LlistaJocsView.vue')
     },
     {
-    path: '/crear-clip',
-    name: 'crear-clip',
-    component: () => import('../views/CrearClipView.vue'),
-    meta: { requiresAuth: true }
+      path: '/crear-clip',
+      name: 'crear-clip',
+      component: () => import('../views/CrearClipView.vue'),
+      meta: { requiresAuth: true }
     }
   ]
 })
 
 router.beforeEach((to) => {
-  const { estaAutenticat } = useAuth()
-
-  if (to.meta.requiresAuth && !estaAutenticat()) {
+  const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+  if (to.meta.requiresAuth && !token) {
     return { name: 'login' }
   }
 })
