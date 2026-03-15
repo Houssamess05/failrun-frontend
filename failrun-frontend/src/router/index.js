@@ -10,15 +10,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () => import('../views/LoginView.vue')
-    },
-    {
       path: '/perfil',
       name: 'perfil',
-      component: () => import('../views/UserView.vue'),
-      meta: { requiresAuth: true }
+      component: () => import('../views/UserView.vue')
     },
     {
       path: '/sobre-nosaltres',
@@ -47,7 +41,7 @@ const router = createRouter({
 router.beforeEach((to) => {
   const token = localStorage.getItem('token') || sessionStorage.getItem('token')
   if (to.meta.requiresAuth && !token) {
-    return { name: 'login' }
+    return { name: 'perfil' }
   }
 })
 

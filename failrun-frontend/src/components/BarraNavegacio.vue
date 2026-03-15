@@ -4,8 +4,8 @@
 <template>
 <nav class="menu">
   <div class="item">
-    <router-link to="/login">
-      <img src="/styles/img/Profile.svg" alt="Login">
+    <router-link to="/perfil">
+      <img src="/styles/img/Profile.svg" alt="Perfil">
     </router-link>
   </div>
 

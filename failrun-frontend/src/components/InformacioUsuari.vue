@@ -5,13 +5,16 @@ const props = defineProps({
     required: true
   }
 })
+
+const emit = defineEmits(['logout'])
 </script>
 
 <template>
   <div class="user-box">
-    <h1>Perfil d'usuari</h1>
-    <p>Nom: {{ props.usuari.nomUsuari }}</p>
-    <p>Correu: {{ props.usuari.correu }}</p>
+    <h1>Perfil del usuario</h1>
+    <p>Nombre: {{ props.usuari.username }}</p>
+    <p>Correo: {{ props.usuari.email }}</p>
+    <button class="btn" @click="emit('logout')">Cerrar sesión</button>
   </div>
 </template>
 
@@ -36,5 +39,19 @@ h1 {
 p {
   font-size: 1.2rem;
   color: #ccc;
+}
+button {
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  background-color: #FF2D55;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #CF2949;
 }
 </style>

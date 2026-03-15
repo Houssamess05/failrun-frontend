@@ -1,7 +1,7 @@
 import axios from 'axios'
-
+// Creem una instància d'Axios amb la configuració bàsica
 const http = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/',
+    baseURL: import.meta.env.VITE_API_URL,
     timeout: 2000,
     headers: {
         'Content-Type': 'application/json'
@@ -11,6 +11,7 @@ const http = axios.create({
 // Interceptor: afegeix el token JWT a cada petició automàticament
 http.interceptors.request.use((config) => {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+    //Si hi ha una sessió activa, afegim el token a les capçaleres de la petició
     if (token) {
         config.headers.Authorization = `Bearer ${token}`
     }

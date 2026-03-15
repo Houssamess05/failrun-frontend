@@ -1,30 +1,47 @@
 <script setup>
+import { useRouter } from 'vue-router'
+import { useAuth } from '@/composables/useAuth'
 import BarraNavegacio from '@/components/BarraNavegacio.vue'
 import PeuPagina from '@/components/PeuPagina.vue'
+import FormulariSessio from '@/components/FormulariSessio.vue'
 import InformacioUsuari from '@/components/InformacioUsuari.vue'
-import { useAuth } from '@/composables/useAuth'
-import { useRouter } from 'vue-router'
-import { ref } from 'vue'
 
-const { usuari } = useAuth()
+const { login, register, logout, isLoggedIn, user } = useAuth()
 const router = useRouter()
-const formClip = ref(false)
+
+async function ferLogin(dades) {
+  await login(dades.email, dades.password, dades.recordarme)
+}
+
+async function ferRegistre(dades) {
+  await register(dades.username, dades.email, dades.password)
+}
 </script>
 
 <template>
   <BarraNavegacio />
 
   <div class="main-page">
-    <InformacioUsuari v-if="usuari" :usuari="usuari" />
 
-    <div v-else class="user-box">
-      <h2>¡Bienvenido a FailRun!</h2>
-      <p>Inicia sesión o regístrate para disfrutar de la experiencia completa.</p>
-    </div>
+    <!-- Si no hi ha sessió mostrem el formulari -->
+    <FormulariSessio
+      v-if="!isLoggedIn"
+      @login="ferLogin"
+      @register="ferRegistre"
+    />
 
-    <button v-if="usuari" class="btn" @click="router.push({ name: 'crear-clip' })">
-      Crear clip
-    </button>
+    <!-- Si hi ha sessió mostrem el perfil -->
+    <template v-else>
+      <InformacioUsuari
+        v-if="user"
+        :usuari="user"
+        @logout="logout"
+      />
+      <button @click="router.push({ name: 'crear-clip' })">
+        Crear clip
+      </button>
+    </template>
+
   </div>
 
   <PeuPagina />
@@ -53,7 +70,7 @@ const formClip = ref(false)
   text-align: center;
 }
 
-.btn {
+button {
   padding: 0.75rem 2rem;
   border-radius: 8px;
   background-color: #FF2D55;
@@ -64,7 +81,7 @@ const formClip = ref(false)
   cursor: pointer;
 }
 
-.btn:hover {
+button:hover {
   background-color: #CF2949;
 }
 </style>
